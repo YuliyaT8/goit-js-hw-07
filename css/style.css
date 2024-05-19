@@ -1,0 +1,25 @@
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    /* Spacing between gallery items */
+    margin: 0 auto;
+    /* Center the gallery horizontally */
+    width: 80%;
+    /* Adjust width as needed */
+}
+
+.gallery-item {
+    flex: 0 0 33%;
+    /* Make items 33% width each */
+    list-style: none;
+    /* Remove default list styling */
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    /* Cover the entire container */
+}
