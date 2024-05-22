@@ -1,4 +1,5 @@
 const galleryList = document.querySelector('.gallery');
+
 const images = [
   {
     url: 'https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?dpr=2&h=750&w=1260',
@@ -26,34 +27,15 @@ const images = [
   },
 ];
 
-// Функція для створення галереї
-function createGallery() {
-  // Створення шаблону елемента галереї
-  const galleryItemTemplate = `
-    <li class="gallery-item">
-      <img src="" alt="" class="gallery-image">
-    </li>
-  `;
+// Створення елементів галереї
+const galleryItems = images.map((image) => {
+  const galleryItem = document.createElement('li');
+  const galleryImage = document.createElement('img');
+  galleryImage.src = image.url;
+  galleryImage.alt = image.alt;
+  galleryItem.append(galleryImage);
+  return galleryItem;
+});
 
-  // Фрагмент документа для додавання елементів
-  const galleryFragment = document.createDocumentFragment();
-
-  // Створення елементів галереї з даних
-  images.forEach((image) => {
-    const galleryItem = document.createElement('div');
-    galleryItem.innerHTML = galleryItemTemplate;
-
-    const imageElement = galleryItem.querySelector('.gallery-image');
-    imageElement.src = image.url;
-    imageElement.alt = image.alt;
-
-    galleryFragment.appendChild(galleryItem);
-  });
-
-  // Додавання галереї в DOM
-  galleryList.innerHTML = '';
-  galleryList.appendChild(galleryFragment);
-}
-
-// Запуск функції створення галереї
-createGallery();
+// Додавання елементів галереї в DOM
+galleryList.append(...galleryItems);

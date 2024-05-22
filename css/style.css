@@ -1,25 +1,33 @@
+/* Оформлення галереї */
+#gallery-section {
+    margin: 20px;
+}
+
 .gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px;
-    /* Spacing between gallery items */
+  
     margin: 0 auto;
-    /* Center the gallery horizontally */
+  
     width: 80%;
-    /* Adjust width as needed */
+ 
 }
 
-.gallery-item {
+.gallery li {
     flex: 0 0 33%;
-    /* Make items 33% width each */
+    
     list-style: none;
-    /* Remove default list styling */
+
+    margin-bottom: 10px;
 }
 
-.gallery-image {
+.gallery img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    /* Cover the entire container */
+  
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }

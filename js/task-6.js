@@ -1,40 +1,41 @@
-const input = document.querySelector('[type="number"]');
-const createBtn = document.querySelector('[data-create]');
-const destroyBtn = document.querySelector('[data-destroy]');
+const input = document.querySelector('#controls input');
+const createButton = document.querySelector('#controls [data-create]');
+const destroyButton = document.querySelector('#controls [data-destroy]');
 const boxesContainer = document.getElementById('boxes');
 
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215)
-    .toString(16)
-    .padStart(6, 0)}`;
-}
+const getRandomHexColor = () => {
+  return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
+};
 
-function createBoxes(amount) {
-  destroyBoxes(); // Очищаємо попередні елементи
+const createBoxes = (amount) => {
+  // Create a DocumentFragment to hold the elements
+  const fragment = document.createDocumentFragment();
 
   for (let i = 0; i < amount; i++) {
     const box = document.createElement('div');
-    const size = 30 + i * 10;
-    box.style.width = `${size}px`;
-    box.style.height = `${size}px`;
+    box.style.width = `${30 + i * 10}px`;
+    box.style.height = `${30 + i * 10}px`;
     box.style.backgroundColor = getRandomHexColor();
-    boxesContainer.appendChild(box);
+    fragment.appendChild(box);
   }
-}
 
-function destroyBoxes() {
+  // Append the entire fragment to the boxesContainer in one operation
+  boxesContainer.appendChild(fragment);
+};
+
+const destroyBoxes = () => {
   boxesContainer.innerHTML = '';
-}
+};
 
-createBtn.addEventListener('click', () => {
-  const amount = parseInt(input.value);
+createButton.addEventListener('click', () => {
+  const amount = parseInt(input.value, 10);
 
   if (isNaN(amount) || amount < 1 || amount > 100) {
-    return;
+    return; // Invalid input value
   }
 
   createBoxes(amount);
-  input.value = '';
+  input.value = ''; // Clear input
 });
 
-destroyBtn.addEventListener('click', destroyBoxes);
+destroyButton.addEventListener('click', destroyBoxes);
